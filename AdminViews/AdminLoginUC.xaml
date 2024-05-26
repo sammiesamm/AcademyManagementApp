@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="AcademyManager.AdminViews.AdminLoginUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="380"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels"
+             d:DataContext="{d:DesignInstance Type=adminviewmodels:AdminLoginVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="adminLogin">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#15BF5C"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="#027324"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="WhiteSmoke">
+            <StackPanel Grid.Row="1" Orientation="Vertical"
+                        VerticalAlignment="Center">
+                <Label HorizontalAlignment="Center" 
+                        FontSize="40" Foreground="#15BF5C"
+                    >Đăng nhập</Label>
+                <Rectangle Height="5" Width="80"
+                           Fill="#15BF5C"
+                           Margin="0 0 0 30"></Rectangle>
+                <Border Width="250" Height="40"
+                        BorderThickness="1.5"
+                        BorderBrush="Black"
+                        CornerRadius="20" Margin="0 0 0 15">
+                    <TextBox Width="220" Height="30"
+                             Text="{Binding UUID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             BorderThickness="0" FontSize="16"
+                             VerticalContentAlignment="Center"
+                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                             materialDesign:TextFieldAssist.LeadingIcon="Key"
+                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                             materialDesign:HintAssist.Hint="UUID"></TextBox>
+                </Border>
+                <Border Width="250" Height="40"
+                        BorderThickness="1.5"
+                        BorderBrush="Black"
+                        CornerRadius="20" Margin="0 0 0 15">
+                    <PasswordBox Width="220" Height="30"
+                                 x:Name="PasswordBox"
+                                 BorderThickness="0" FontSize="16"
+                                 VerticalContentAlignment="Center"
+                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                 materialDesign:TextFieldAssist.LeadingIcon="Lock"
+                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 materialDesign:HintAssist.Hint="Mật khẩu">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PasswordChanged">
+                                <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                       CommandParameter="{Binding ElementName=PasswordBox}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </PasswordBox>
+                </Border>
+                <Button Height="40" Width="250"
+                        Foreground="White"
+                        FontSize="16" IsDefault="True"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=adminLogin}">
+                    <Grid Width="220">
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center">Đăng nhập</TextBlock>
+                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                     Height="20" Width="20" Value="0" IsIndeterminate="True"
+                                     Foreground="White" Visibility="{Binding Loading}"
+                                     HorizontalAlignment="Right"></ProgressBar>
+                    </Grid>
+                </Button>
+                <Label HorizontalAlignment="Center"
+                       Foreground="DeepPink"
+                       FontStyle="Italic"
+                       Visibility="{Binding NotificationV}"
+                       Content="{Binding Notification}"></Label>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,220 @@
+﻿<UserControl x:Class="AcademyManager.AdminViews.SearchUserUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             xmlns:models="clr-namespace:AcademyManager.Models"
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+             d:DataContext="{d:DesignInstance Type=adminviewmodels:SearchUserVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="525" d:DesignWidth="580"
+             xmlns:convert="clr-namespace:AcademyManager.Models">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="SearchButton">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#15BF5C"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="#027324"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Border Width="220" Height="40"
+                    BorderThickness="1.5"
+                    CornerRadius="20"
+                    Background="White"
+                    Margin="15 0 10 0"
+                    BorderBrush="Black">
+                <ComboBox x:Name="TypeSelectionBox"
+                          SelectedIndex="{Binding SelectedIdx, Mode=TwoWay}"
+                          Height="30" Width="190"
+                          BorderThickness="0"
+                          FontSize="16" Cursor="Hand"
+                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                          materialDesign:HintAssist.Hint="Chọn loại người dùng">
+                    <ComboBoxItem Content="Sinh viên"/>
+                    <ComboBoxItem Content="Giảng viên"/>
+                </ComboBox>
+            </Border>
+            <Border Width="310" Height="40"
+                    BorderThickness="1.5"
+                    CornerRadius="20"
+                    Background="White"
+                    Margin="10 0 15 0"
+                    BorderBrush="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SearchBox"
+                             Text="{Binding ID, Mode=TwoWay}"
+                              Height="30" Width="220"
+                              BorderThickness="0"
+                              FontSize="16"
+                              VerticalContentAlignment="Center"
+                              materialDesign:TextFieldAssist.LeadingIcon="Search"
+                              materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                              materialDesign:HintAssist.Hint="Nhập ID">
+                    </TextBox>
+                    <Button Grid.Column="1" IsDefault="True"
+                            Style="{StaticResource SearchButton}"
+                            Command="{Binding SearchCommand}"
+                            CommandParameter="{Binding ElementName=UserDataGrid}"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Width="30" Height="30"
+                            Margin="15 0 0 0" 
+                            Background="Transparent"
+                            BorderBrush="Transparent">
+                        <materialDesign:PackIcon Kind="Send" 
+                                                 Width="15" Height="15"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"
+                                                 Foreground="White"/>
+                    </Button>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="20 10 20 20"
+                CornerRadius="5"
+                BorderThickness="1.5"
+                BorderBrush="Black"
+                Background="White">
+            <Grid>
+                <TabControl Visibility="{Binding DataV}">
+                    <TabItem Header="Thông tin cá nhân" 
+                             Background="Blue"
+                             Cursor="Hand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Height="250" Width="200"
+                                    CornerRadius="10"
+                                    BorderBrush="Black"
+                                    BorderThickness="1">
+                                <Border.Resources>
+                                    <convert:ImageConverter x:Key="ImageConverter"></convert:ImageConverter>
+                                </Border.Resources>
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImageConverter}}"
+                                                Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
+                            <StackPanel Orientation="Vertical" Grid.Column="1"
+                                        VerticalAlignment="Center">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="0 0 0 10"/>
+                                        <Setter Property="FontSize" Value="14"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="{Binding UserID}"/>
+                                <TextBlock Text="{Binding Fullname}"/>
+                                <TextBlock Text="{Binding Email}"/>
+                                <TextBlock Text="{Binding Birthday}"/>
+                                <TextBlock Text="{Binding Faculty}"/>
+                                <TextBlock Text="{Binding Addition1}"/>
+                                <TextBlock Text="{Binding Addition2}" Visibility="{Binding Addition2V}"/>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="{Binding TabHeader}"
+                             Background="Blue"
+                             Cursor="Hand">
+                        <Grid>
+                            <DataGrid x:Name="StudentDataGrid"
+                                      IsReadOnly="True"
+                                      ItemsSource="{Binding Students}"
+                                      Visibility="{Binding StudentV}"
+                                      AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã môn học"
+                                                        Binding="{Binding CourseID}"/>
+                                    <DataGridTextColumn Header="Tên môn học"
+                                                        Binding="{Binding CourseName}"/>
+                                    <DataGridTextColumn Header="Kiểm tra"
+                                                        Binding="{Binding Daily}"/>
+                                    <DataGridTextColumn Header="BTL"
+                                                        Binding="{Binding Project}"/>
+                                    <DataGridTextColumn Header="Giữa kỳ"
+                                                        Binding="{Binding MidTerm}"/>
+                                    <DataGridTextColumn Header="Cuối kỳ"
+                                                        Binding="{Binding Final}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid x:Name="InsDataGrid"
+                                      IsReadOnly="True"
+                                      ItemsSource="{Binding Instructors}"
+                                      Visibility="{Binding InsV}"
+                                      AutoGenerateColumns="False">
+                                <DataGrid.Resources>
+                                    <models:DayOfWeekConverter x:Key="DayConverter"/>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã môn học"
+                                                        Binding="{Binding CourseID}"/>
+                                    <DataGridTextColumn Header="Tên môn học"
+                                                        Binding="{Binding CourseName}"/>
+                                    <DataGridTextColumn Header="Lớp"
+                                                        Binding="{Binding ClassID}"/>
+                                    <DataGridTextColumn Header="Ngày"
+                                                        Binding="{Binding Workday, Converter={StaticResource DayConverter}}"/>
+                                    <DataGridTextColumn Header="Bắt đầu"
+                                                        Binding="{Binding BeginTime}"/>
+                                    <DataGridTextColumn Header="Kết thúc"
+                                                        Binding="{Binding EndTime}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <Label VerticalAlignment="Center"
+                       Visibility="{Binding NotFound}"
+                       HorizontalAlignment="Center"
+                       FontSize="16" FontStyle="Italic"
+                       Foreground="OrangeRed">
+                    Không tìm thấy kết quả.
+                </Label>
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Width="50" Height="50" Foreground="Black"
+                             Margin="244,186,243,186" IsIndeterminate="True"
+                             Visibility="{Binding Loading}"></ProgressBar>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
