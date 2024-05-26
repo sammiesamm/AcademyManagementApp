@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="AcademyManager.UCViews.ExamScheduleUC"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                xmlns:local="clr-namespace:AcademyManager.AdminViews"
+                mc:Ignorable="d"
+                x:Name="exam"
+                TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                TextElement.FontWeight="Regular"
+                TextElement.FontSize="13"
+                TextOptions.TextFormattingMode="Ideal"
+                TextOptions.TextRenderingMode="Auto"
+                FontFamily="{DynamicResource MaterialDesignFont}"
+                Height="70" Width="800" >
+        <Border CornerRadius="20" Width="800">
+            <Border.Background>
+            <SolidColorBrush Color="#02702C" Opacity="0.9"/>
+            </Border.Background>
+            <StackPanel Margin="0,0,0,0">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock FontSize="25" FontWeight="Bold"
+                           TextWrapping="Wrap" 
+                           Margin="20,5,0,5">
+                    <Run Text="{Binding Path=Subject, ElementName=exam}"/>
+                </TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="16" 
+                           Grid.Column="0"
+                           TextWrapping="Wrap" 
+                           Margin="20,0,0,5">
+                        <Run Text="Ngày thi: "/>
+                        <Run Text="{Binding Date, ElementName=exam}"/>
+                </TextBlock>
+                <TextBlock FontSize="16"
+                           Grid.Column="1"
+                           TextWrapping="Wrap" 
+                           Margin="20,0,0,5">
+                        <Run Text="Phòng thi: "/>
+                        <Run Text="{Binding Room, ElementName=exam}"/>
+                </TextBlock>
+                <TextBlock FontSize="16"
+                           Grid.Column="2"
+                           TextWrapping="Wrap" 
+                           Margin="20,0,0,0">
+                        <Run Text="Giờ thi: "/>
+                        <Run Text="{Binding Time, ElementName=exam}"/>
+                </TextBlock>
+            </Grid>
+        </StackPanel>
+        </Border>
+</UserControl>

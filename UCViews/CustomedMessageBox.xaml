@@ -1,0 +1,44 @@
+﻿<Window x:Class="AcademyManager.UCViews.CustomedMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AcademyManager.UCViews"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Background="Transparent" AllowsTransparency="True"
+        Title="CustomedMessageBox" Height="300" Width="300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Border Background="White" CornerRadius="20" BorderThickness="1" BorderBrush="Black">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <md:PackIcon Kind="SignalOff" Height="100" Width="100"
+                         HorizontalAlignment="Center"
+                         Foreground="OrangeRed"
+                         Margin="0 0 0 10"/>
+            <TextBlock FontSize="20" HorizontalAlignment="Center"
+                       Margin="0 0 0 5" FontWeight="Medium">
+                       Lỗi kết nối
+            </TextBlock>
+            <TextBlock FontSize="16" HorizontalAlignment="Center"
+                       Margin="0 0 0 50" Width="230" TextWrapping="Wrap"
+                       TextAlignment="Center">
+                Không thể kết nối đến Internet và cơ sở dữ liệu
+            </TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Background="#089546"
+                        BorderBrush="#089546"
+                        Cursor="Hand"
+                        Width="100" Margin="0 0 10 0" Click="Button_Click">
+                    Thử lại
+                </Button>
+                <Button Background="#089546"
+                        BorderBrush="#089546"
+                        Width="100" Cursor="Hand" Click="Button_Click_1">
+                    Thoát
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

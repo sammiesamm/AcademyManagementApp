@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="AcademyManager.UCViews.SubjectRegisterUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" x:Name="register"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="120" d:DesignWidth="800"
+             xmlns:cv="clr-namespace:AcademyManager.Models">
+    <UserControl.Resources>
+        <cv:DayOfWeekConverter x:Key="DayConverter"/>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#004B19"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                          HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border CornerRadius="20" Background="#02702C" Cursor="Hand">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.8"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Opacity" Value="1"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Grid>
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Margin="20 15 0 0 " FontSize="25" Text="{Binding Path=Class, ElementName=register}" TextAlignment="Left" FontWeight="Medium"></TextBlock>
+                <TextBlock Margin="20 5 0 0 " FontSize="20" TextAlignment="Left">
+                    <Run Text="Giảng viên: " />
+                    <Run Text="{Binding LecturerName, ElementName=register}" />
+                </TextBlock>
+                <Grid Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="20 5 0 0" FontSize="20" Grid.Column="0">
+                        <Run Text="Phòng học: "></Run>
+                        <Run Text="{Binding Path=Room, ElementName=register}"/>
+                    </TextBlock>
+                    <TextBlock Margin="20 5 0 0" FontSize="20" Grid.Column="1">
+                        <Run Text="Giờ học: "></Run>
+                        <Run Text="{Binding Path=Time, ElementName=register}"/>
+                    </TextBlock>
+                    <TextBlock Margin="20 5 0 0" FontSize="20" Grid.Column="2">
+                        <Run Text="Ngày học: "></Run>
+                        <Run Text="{Binding Path=Day, ElementName=register, Converter={StaticResource DayConverter}}"/>
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+            <Button Height="50" Width="50" Margin="740,10,10,60"
+                    x:Name="RegisterButton"
+                    Click="RegisterButton_Click">
+                <md:PackIcon Width="40" Height="40"
+                             Foreground="White" 
+                             x:Name="Icon"/>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

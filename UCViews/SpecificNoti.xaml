@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="AcademyManager.UCViews.SpecificNoti"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+            xmlns:local="clr-namespace:AcademyManager.AdminViews"
+            mc:Ignorable="d"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+            xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+            Height="90" Width="700"
+            x:Name="noti">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#004B19"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                              HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border Background="#02702C" CornerRadius="20" Cursor="Hand">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Opacity" Value="0.8"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="Opacity" Value="1"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1"
+                    Width="40" Height="40"
+                    HorizontalAlignment="Center"
+                    Background="RoyalBlue"
+                    ToolTip="Đọc và xóa"
+                    x:Name="Delete" Click="Delete_Click">
+                <materialDesign:PackIcon Kind="Checkbox"
+                                         Height="38" Width="38"
+                                         Foreground="White" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
+            </Button>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <materialDesign:PackIcon Margin="20 0 0 0"
+                             Kind="BellRing"
+                             Width="40" Height="40"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Foreground="White"/>
+                    <TextBlock Grid.Column="1" FontWeight="Medium"
+                               FontSize="28" Margin="10" Foreground="White"
+                               Text="{Binding Path=Title, ElementName=noti}"/>
+                </StackPanel>
+                <TextBlock Grid.Row="1" FontSize="16"
+                           Margin="70 0 0 0" Foreground="White"
+                           FontStyle="Italic">
+                    <Run Text="{Binding Path=NotiContent, ElementName=noti}"/>
+                    <Run Text=" ("/>
+                    <Run Text="{Binding Path=UpdateTime, ElementName=noti}"/>
+                    <Run Text=")"/>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
