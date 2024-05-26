@@ -32,8 +32,4 @@
 - Đăng nhập với tư cách quản trị viên để quản lý người dùng và hồ sơ học tập.
 - Đăng nhập với tư cách người dùng để truy cập thông tin học tập cá nhân và thời khóa biểu.
 
-## Đóng Góp
-Đóng góp rất được hoan nghênh! Vui lòng fork repository và tạo pull request với các thay đổi của bạn.
 
-## Giấy Phép
-Dự án này được cấp phép theo giấy phép MIT.
