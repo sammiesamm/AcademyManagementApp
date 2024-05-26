@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="AcademyManager.Views.StudentInfor"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+            xmlns:cv="clr-namespace:AcademyManager.Models"
+            mc:Ignorable="d"
+            x:Name="studentInfoWindow"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+            xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
+            d:DataContext="{d:DesignInstance Type=viewmodels:StudentInfoVM}"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+            Height="600" Width="1000" ClipToBounds="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+
+        <Border Margin="40,57,40,114" CornerRadius="20">
+            <Border.Background>
+                <SolidColorBrush Color="#FFE6FFEC" 
+                         Opacity="0.9"/>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Width="280" Height="320"
+                        BorderThickness="1" BorderBrush="Black"
+                        CornerRadius="10">
+                    <Border.Resources>
+                        <cv:ImageConverter x:Key="ImgConverter"/>
+                    </Border.Resources>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImgConverter}}"
+                                    Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center" 
+                            Grid.Column="1">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="0 0 0 10"/>
+                            <Setter Property="FontSize" Value="25"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock>
+                        <Run Text="Họ và tên: "/>
+                        <Run Text="{Binding Fullname}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="MSSV: "/>
+                        <Run Text="{Binding ID}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Ngày sinh: "/>
+                        <Run Text="{Binding Birthday}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Địa chỉ email: "/>
+                        <Run Text="{Binding Email}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Khoa: "/>
+                        <Run Text="{Binding Faculty}"/>
+                    </TextBlock>
+                    <TextBlock>
+                        <Run Text="Chuyên ngành: "/>
+                        <Run Text="{Binding Major}"/>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Button 
+            Style="{DynamicResource RoundButton}"
+            Grid.Row="1" Cursor="Hand"
+            FontSize="20" 
+            Foreground="White"
+            RenderTransformOrigin="0.5,0.5" Margin="425,520,425,30" Width="150" Height="50"
+            Command="{Binding BackCommand}" Content="Quay lại">
+        </Button>
+    </Grid>
+</UserControl>

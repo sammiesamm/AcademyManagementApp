@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="AcademyManager.Views.Noti"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:uc="clr-namespace:AcademyManager.UCViews"
+             mc:Ignorable="d"
+             x:Name="notiUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:NotiVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="600" Width="1000" ClipToBounds="True">
+    <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="500"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="35"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+                THÔNG BÁO</TextBlock>
+            <Separator Grid.Row="1" Height="5" Width="900"/>
+            <ScrollViewer Grid.Row="2" Width="900" Height="400"
+                          Background="Transparent"
+                          VerticalAlignment="Top"
+                          VerticalScrollBarVisibility="Auto" Margin="50,31,50,0">
+                <StackPanel HorizontalAlignment="Center" x:Name="notiPanel">
+                    <StackPanel.Resources>
+                        <Style TargetType="uc:SpecificNoti">
+                            <Setter Property="Margin" Value="0 0 0 10"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+            </ScrollViewer>
+            <Button Height="40" Margin="321,460,528,0" Grid.Row="2"
+                    Style="{DynamicResource RoundButton}"
+                    Content="Quay lại" Foreground="White" FontSize="20"
+                    Command="{Binding BackCommand}"/>
+            <Button Height="40" Margin="500,460,350,0" Grid.Row="2"
+                    Style="{DynamicResource RoundButton}"
+                    Content="Tải lại" Foreground="White" FontSize="20"
+                    Command="{Binding ReloadCommand}"
+                    CommandParameter="{Binding ElementName=notiPanel}"/>
+            <Label Content="Không có thông báo mới."
+                   FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Grid.Row="2" Visibility="{Binding LabelV}"/>
+        </Grid>
+    </Grid>
+</UserControl>

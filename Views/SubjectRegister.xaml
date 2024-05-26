@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="AcademyManager.Views.SubjectRegister"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             mc:Ignorable="d"
+             xmlns:toast="clr-namespace:Flattinger.UI.ToastMessage.Controls;assembly=Flattinger.UI.ToastMessage"
+             xmlns:uc="clr-namespace:AcademyManager.UCViews"
+             x:Name="subjectRegisterWindow"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:SubjectRegisterVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="600" Width="1000" ClipToBounds="True">
+    <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <TextBlock TextAlignment="Center" FontWeight="Medium"
+                       TextWrapping="Wrap" FontSize="35" Foreground="Black" 
+                       Margin="150,13,150,527" Height="60" Width="700"><Run Text="ĐĂNG K"/><Run Language="vi-vn" Text="Ý"/><Run Text=" MÔN HỌC"/></TextBlock>
+        <Separator Background="Black" Margin="0,55,0,535" HorizontalAlignment="Center" Width="850" Height="10"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Width="850" Margin="75,128,75,70">
+            <StackPanel x:Name="ClassPanel">
+                <StackPanel.Resources>
+                    <Style TargetType="uc:SubjectRegisterUC">
+                        <Setter Property="Margin" Value="0 10 10 0"/>
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Height="40" Width="160"
+                Foreground="White" FontSize="20" 
+                Margin="420,530,420,10"
+                Style="{DynamicResource RoundButton}"
+                Command="{Binding BackCommand}">
+            Quay lại
+        </Button>
+        <Border Background="White" CornerRadius="20"
+                Height="40" Margin="75,73,620,477"
+                BorderThickness="1" BorderBrush="Black">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <TextBox Height="30" Width="200"
+                         Text="{Binding CID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="16" VerticalContentAlignment="Center"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                         materialDesign:TextFieldAssist.LeadingIcon="Collage"
+                         materialDesign:HintAssist.Hint="Nhập mã môn học"
+                         BorderThickness="0" Margin="20 0 0 0"></TextBox>
+                <Button Height="30" Width="30" Margin="40 0 0 0"
+                        Style="{DynamicResource RoundButton}"
+                        Command="{Binding SearchCommand}" IsDefault="True"
+                        CommandParameter="{Binding ElementName=ClassPanel}">
+                    <materialDesign:PackIcon Kind="Search" Foreground="White"
+                                             Height="20" Width="20"/>
+                </Button>
+            </StackPanel>
+        </Border>
+        <Label Content="Không tìm thấy môn học."
+               Visibility="{Binding Unfound}"
+               FontSize="18" VerticalAlignment="Center"
+               HorizontalAlignment="Center" FontStyle="Italic"/>
+        <toast:NotificationContainer Height="80" Width="350"
+                                     x:Name="notification" 
+                                     Margin="575,73,75,427"/>
+    </Grid>
+</UserControl>

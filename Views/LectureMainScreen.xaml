@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="AcademyManager.Views.LectureMainScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             mc:Ignorable="d"
+             x:Name="lectureMainUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:viewmodels="clr-namespace:AcademyManager.Viewmodels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:LectureHomeVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="600" Width="1000" ClipToBounds="True">
+    <UserControl.Resources>
+        <Style TargetType="ToggleButton">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="ButtonBorder" CornerRadius="10">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="ForestGreen"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Background" Value="#FF3C783C"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#027324"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="80">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Opacity" Value="0.7"/>
+                                            <Setter Property="Background" Value="#FFABEDC6"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-2000,-2000" Opacity="0.5" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <Border Margin="0,80,0,70" RenderTransformOrigin="0.502,0.009" CornerRadius="0" Opacity="0.865" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="15" Opacity="0.5" Direction="300" BlurRadius="50"/>
+            </Border.Effect>
+            <Border.Background>
+                <SolidColorBrush
+            Color="#FFEDF7F1" Opacity="0.05"/>
+            </Border.Background>
+            <StackPanel VerticalAlignment="Center" Orientation="Vertical" Height="170"/>
+        </Border>
+        <Border Margin="0,80,0,70" RenderTransformOrigin="0.502,0.009" CornerRadius="0" Opacity="0.865" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="15" Opacity="0.5" Direction="300" BlurRadius="50"/>
+            </Border.Effect>
+            <Border.Background>
+                <SolidColorBrush
+            Color="#FFEDF7F1" Opacity="0.5"/>
+            </Border.Background>
+            <StackPanel VerticalAlignment="Center" Orientation="Vertical" Height="170"/>
+        </Border>
+        <Button Command="{Binding InfoCommand}" Margin="10,296,530,42" Grid.RowSpan="2" Width="240" Height="240">
+            <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
+                <Border.Background>
+                    <SolidColorBrush Color="#089546" Opacity="0.9"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.5" Direction="300" ShadowDepth="15" BlurRadius="50"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center" Height="235" VerticalAlignment="Top">
+                    <TextBlock FontSize="30" Foreground="White" TextAlignment="Center" Text="Thông tin" Height="40" Margin="15,20,0,-15"/>
+                    <materialDesign:PackIcon Margin="0,15,0,0" Kind="AccountCircle" Foreground="White" Height="150" Width="150"/>
+                </StackPanel>
+            </Border>
+        </Button>
+        <Button Command="{Binding CourseCommand}" Margin="383,310,237,50" Grid.RowSpan="2" Width="240" Height="240">
+            <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
+                <Border.Background>
+                    <SolidColorBrush Color="#089546" Opacity="0.9"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.5" Direction="300" ShadowDepth="15" BlurRadius="50"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center" Height="235" VerticalAlignment="Top">
+                    <TextBlock FontSize="30" Foreground="White" TextAlignment="Center" Text="Khóa học" Height="40" Margin="15,20,0,-15"/>
+                    <materialDesign:PackIcon Margin="0,15,0,0" Kind="Collage" Foreground="White" Height="150" Width="150"/>
+                </StackPanel>
+            </Border>
+        </Button>
+        <Button Command="{Binding ScheduleCommand}" Margin="710,307,50,53" Grid.RowSpan="2" Width="240" Height="240" Grid.ColumnSpan="2">
+            <Border CornerRadius="80" Grid.RowSpan="2" Width="240" Height="240">
+                <Border.Background>
+                    <SolidColorBrush Color="#089546" Opacity="0.9"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.5" Direction="300" ShadowDepth="15" BlurRadius="50"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center" Height="235" VerticalAlignment="Top">
+                    <TextBlock FontSize="30" Foreground="White" TextAlignment="Center" Text="Lịch dạy" Height="40" Margin="15,20,0,-15"/>
+                    <materialDesign:PackIcon Margin="0,15,0,0" Kind="CalendarMultiple" Foreground="White" Height="150" Width="150"/>
+                </StackPanel>
+            </Border>
+        </Button>
+        <TextBlock TextWrapping="Wrap" 
+                   TextAlignment="Center" 
+                   FontSize="50" 
+                   Foreground="Black" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Left" Margin="158,118,0,0" Width="690"><Run Text="MỖI NGÀY "/><Run Text="ĐẾN TRƯỜNG"/><LineBreak/><Run Text="LÀ MỘT "/><Run Text="NGÀY VUI!"/></TextBlock>
+    </Grid>
+</UserControl>

@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="AcademyManager.Views.WhoAreYou"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:AcademyManager.AdminViews"
+             mc:Ignorable="d" 
+             x:Name="who"
+             xmlns:uc="clr-namespace:AcademyManager.Views"
+             xmlns:vm="clr-namespace:AcademyManager.Viewmodels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:adminviewmodels="clr-namespace:AcademyManager.AdminViewmodels" 
+             d:DataContext="{d:DesignInstance Type=vm:WhoAreYouVM}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="600" d:DesignWidth="1000" ClipToBounds="True">
+    <Grid>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="1196" Width="1507" Margin="355,-324,-500,0" Opacity="0.5">
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Foreground="#FF7CAC7E" Kind="Clover" Height="558" Margin="-280,-200,0,0" Width="786" RenderTransformOrigin="0.5,0.5" Opacity="0.5" >
+            <materialDesign:PackIcon.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="16.75"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </materialDesign:PackIcon.RenderTransform>
+        </materialDesign:PackIcon>
+        <Border 
+            Width="500" Height="320"
+            BorderThickness="1.5"
+            BorderBrush="Black" 
+            CornerRadius="40" 
+            Background="White">
+            <StackPanel Orientation="Vertical"  
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="380"
+                        Opacity="0.9">
+                <TextBlock  HorizontalAlignment="Center"
+                            Foreground="Black"
+                            FontSize="25" FontWeight="Medium"
+                            TextWrapping="Wrap" Height="60" 
+                            TextAlignment="Center" ><Run Text="CHÀO MỪNG BẠN ĐẾN VỚI TRƯỜNG ĐẠI HỌC TAD!"/></TextBlock>
+                <TextBlock  HorizontalAlignment="Center"
+                            Foreground="Black"
+                            FontSize="20"
+                            TextWrapping="Wrap" Height="30" 
+                            TextAlignment="Center" Margin="0,15,0,20" Width="400"><Run Language="vi-vn" Text="Đăng nhập/Đăng ký với tư cách:"/></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="120"/>
+                            <Setter Property="Height" Value="120"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Command="{Binding InstructorCommand}" Background="White">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Teacher" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Giảng viên</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Margin="10 0 10 0" Background="White"
+                            Command="{Binding StudentCommand}">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="AccountStudent" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Sinh viên</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{DynamicResource IconRoundButton}"
+                            Command="{Binding AdminCommand}" CommandParameter="{Binding ElementName=who}" Background="White">
+                        <StackPanel VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Cog" Height="70" Width="70"
+                                                     HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="16" Margin="0 5 0 0"
+                                       HorizontalAlignment="Center">Quản trị viên</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
